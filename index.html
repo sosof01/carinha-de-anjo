@@ -1,137 +1,382 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <title>Tropicália</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carinha de Anjo - Site Completo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos e cores do site, embutidos no HTML */
+
+        /* Variáveis de cores para o tema claro */
+        :root {
+            --fundo-pagina: #FFFAFA; /* Branco Gelo */
+            --fundo-secao: #FADDEB; /* Rosa claro */
+            --cor-principal: #FF69B4; /* Rosa Choque */
+            --cor-secundaria: #87CEEB; /* Azul Céu */
+            --texto-escuro: #4B0082; /* Roxo Índigo */
+            --texto-claro: #FFFFFF; /* Branco */
+            --acessibilidade-cor: #FFD700; /* Amarelo Ouro */
+            --acessibilidade-hover: #FFC0CB; /* Rosa para o hover */
+        }
+
+        /* Variáveis de cores para o tema escuro */
+        .dark-theme {
+            --fundo-pagina: #1a1a1a;
+            --fundo-secao: #2c2c2c;
+            --cor-principal: #FFD700; /* Amarelo Ouro */
+            --cor-secundaria: #00BFFF; /* Azul Profundo */
+            --texto-escuro: #f0f0f0; /* Cinza claro */
+            --texto-claro: #1a1a1a;
+            --acessibilidade-cor: #FFD700; /* Amarelo Ouro */
+            --acessibilidade-hover: #1a1a1a;
+        }
+
+        /* Estilos gerais do corpo da página */
+        body {
+            background-color: var(--fundo-pagina);
+            font-family: 'Open Sans', sans-serif;
+            color: var(--texto-escuro);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        header {
+            background-color: var(--cor-principal);
+            color: var(--texto-claro);
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .titulo-principal {
+            font-family: 'Comfortaa', cursive;
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            max-width: 960px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background-color: var(--fundo-secao);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        h2 {
+            color: var(--cor-principal);
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--cor-principal);
+            padding-bottom: 0.8rem;
+            margin-top: 0;
+            transition: color 0.3s ease;
+        }
+        
+        h2:hover {
+            color: var(--cor-secundaria);
+        }
+
+        /* Destaque para informações importantes */
+        .destaque {
+            font-weight: bold;
+            background-color: var(--cor-secundaria);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            color: var(--texto-claro);
+        }
+
+        .texto-resumo {
+            text-align: justify;
+        }
+
+        .botoes-acessibilidade {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .botoes-acessibilidade button {
+            background-color: var(--acessibilidade-cor);
+            color: var(--texto-escuro);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Efeito hover para os botões de acessibilidade */
+        .botoes-acessibilidade button:hover {
+            background-color: var(--acessibilidade-hover);
+        }
+
+        .conteudo-flex {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .personagem-card {
+            background-color: var(--cor-secundaria);
+            color: var(--texto-claro);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1 1 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .personagem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .personagem-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .personagem-card h3 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin-top: 2rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 15px;
+        }
+
+        /* Estilos do formulário de contato */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--cor-principal);
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--cor-secundaria);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            background-color: var(--fundo-pagina);
+            color: var(--texto-escuro);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-button {
+            background-color: var(--cor-principal);
+            color: var(--texto-claro);
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+        footer {
+            background-color: var(--texto-escuro);
+            color: var(--texto-claro);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            transition: background-color 0.3s ease;
+        }
+
+        footer:hover {
+            background-color: #333333;
+        }
+    </style>
 </head>
-
 <body>
-    <header class=" p-5">
-
-        <nav class="container d-flex justify-content-between align-items-center" >
-            <img src="Carinha_de_Anjo.png" class="nav-img " loading="lazy" width="350">
-            <ul class="nav mt-5">
-                <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
-                <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
-            </ul>
-            <div id="acessibilidade" class="menu-acessibilidade"> 
-                <button id="botao-acessibilidade" class="btn btn-primary fw-bold rotacao-botao" aria-expanded="false">acessibilidade</button>
-                <div id="opcoes-acessibilidade" class="opcoes-acessibilidade apresenta-lista">
-                    <button id="aumentar-fonte" class="btn btn-primary fw-bold" aria-label="Aumentar o tamanho da fonte">A+</button>
-                    <button id="diminuir-fonte" class="btn btn-primary fw-bold" aria-label="diminuir o tamanho da fonte">A-</button>
-                    <button id="alterna-contraste" class="btn btn-primary fw-bold" aria-label="Alterna o contraste de cores"> <i class="bi bi-shadows"></i></button>         
-                </div>
-            </div>
-        </nav>
-       
+    <header>
+        <div class="botoes-acessibilidade">
+            <button id="btn-diminuir">A-</button>
+            <button id="btn-aumentar">A+</button>
+            <button id="btn-tema">Mudar Tema</button>
+        </div>
+        <h1 class="titulo-principal">Carinha de Anjo</h1>
     </header>
 
-
-    <main class="container my-5">
-
-        <section id="inicio" class="my-5">
-            <div class="inicio-fundo d-flex justify-content-between align-items-center">
-                <div class="esquerda-conteudo">
-                    <h1 class="display-4 text-blue fst-italic fw-bold">Boas-vindas a Carinha de Anjo</h1>
-                    <img src="img/logo-2.png" class="mb-3" width="560"
-                        height="278" loading="lazy">
-                    <a href="#tropicalia"
-                        class="btn btn-primary btn-lg botao-inicio fw-semibold">Quero
-                        conhecer!</a>
-                </div>
-                <img src="img/lossy-page1-640px-Os_Mutantes.tif (1).png" alt="A imagem apresenta uma novela do SBT para crianças" title="Os mutantes - CC0 Domínio Público / Acervo Arquivo Nacional" class="img-fluid img-inicio">
-
-              </div>
+    <main>
+        <section class="intro">
+            <h2>Bem-vindo ao mundo de Doçura e Alegria!</h2>
+            <p>Descubra as <span class="destaque">aventuras de Dulce Maria</span>, uma menina que transforma a vida de todos ao seu redor com sua alegria, inocência e imaginação fértil.</p>
         </section>
 
-        <section id="tropicalia" class="my-5 pt-6 secao-tropicalia" tabindex="0" aria-label="Seção explicativa sobre a tropicália">
-            <div class="container d-flex align-items-center ">
-                <div class="col-4 d-flex justify-content-center ">
-                    <img src="img/image (1).png" class="rounded-pill" width="273" height="331" loading="lazy">
+        <section class="resumo">
+            <h2>Resumo da Novela</h2>
+            <p class="texto-resumo">
+                "Carinha de Anjo" conta a história de <span class="destaque">Dulce Maria</span>, uma garotinha de 5 anos que, após a morte de sua mãe, Teresa, é deixada por seu pai, Gustavo, em um colégio interno católico rural.
+                Gustavo, traumatizado pela tragédia, viaja para a Espanha e se isola da família. Enquanto isso, Dulce Maria encontra conforto e carinho nas freiras do internato, especialmente na noviça <span class="destaque">Cecília</span>, que se torna sua grande amiga e figura materna.
+                A novela segue a jornada de Dulce Maria para reunir sua família e trazer de volta a felicidade para a vida de seu pai. Com a ajuda de sua "Tia Perucas", do Padre Gabriel e das freiras, ela vive muitas aventuras e ensina a todos que a inocência e o amor podem superar qualquer obstáculo.
+            </p>
+        </section>
+
+        <section class="personagens">
+            <h2>Personagens Principais</h2>
+            <div class="conteudo-flex">
+                <div class="personagem-card">
+                    <img src="dulce-maria2011.jpg" alt="Foto de Dulce Maria">
+                    <h3>Dulce Maria</h3>
+                    <p>A protagonista, uma garotinha cheia de vida e carisma.</p>
                 </div>
-                <div class="col-5">
-                    <h2>O que foi a Tropicália?</h2>
-                    <p class="p-2">A Tropicália, também conhecida como Tropicalismo, foi um movimento cultural
-                        brasileiro que surgiu na década de 1960, tendo seu auge entre 1967 e 1968. Esse movimento
-                        abrangeu várias expressões artísticas, como a música, o cinema, o teatro e as artes plásticas, e
-                        teve como principal característica a mistura de elementos da cultura brasileira tradicional com
-                        influências estrangeiras, especialmente do rock e da música pop. Fonte: Site Toda a matéria</p>
+                <div class="personagem-card">
+                    <img src="gustavo.jpg" alt="Foto de Gustavo Lários">
+                    <h3>Gustavo Lários</h3>
+                    <p>O pai de Dulce, que redescobre a felicidade ao lado da filha.</p>
+                </div>
+                <div class="personagem-card">
+                    <img src="CECILIA.webp" alt="Foto da Irmã Cecília">
+                    <h3>Irmã Cecília</h3>
+                    <p>A noviça que se torna a grande confidente e amiga de Dulce.</p>
+                </div>
+                <div class="personagem-card">
+                    <img src="TIA PERUCAS.webp" alt="Foto da Tia Perucas">
+                    <h3>Estefânia Lários</h3>
+                    <p>Conhecida como Tia Perucas, ela é a madrinha e grande amiga de Dulce Maria.</p>
+                </div>
+                <div class="personagem-card">
+                    <img src="Emilio.webp" alt="Foto do Emílio">
+                    <h3>Emílio</h3>
+                    <p>O melhor amigo de Dulce no colégio, sempre pronto para uma aventura.</p>
+                </div>
+                <div class="personagem-card">
+                    <img src="irma.jpg" alt="Foto da Irmã Fabiana">
+                    <h3>Irmã Fabiana</h3>
+                    <p>Uma noviça moderna e musical que ajuda Dulce com sua alegria e canções.</p>
                 </div>
             </div>
         </section>
 
-        <section id="galeria" tabindex="0" aria-label="Seção de galeria de imagens">
-            <h2 class="text-center pt-5">Galeria</h2>
-            <div class="container p-3 mt-3 fundo-galeria ">
-
-                <div class="row justify-content-md-center">
-                    <div class="col-md-4">
-                        <img src="img/lossy-page1-640px-Jorge_Ben_e_o_Trio_Mocotó_no_Teatro_da_Lagoa,_1971.tif.jpg"
-                            class="img-fluid rounded-5" loading="lazy">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="img/lossy-page1-640px-Os_Mutantes_2.tif.jpg" class="img-fluid rounded-5"
-                            loading="lazy">
-                    </div>
-                </div>
-                <div class="row mt-4  justify-content-md-center">
-                    <div class="col-md-4">
-                        <img src="img/lossy-page1-640px-Gilberto_Gil_nos_anos_1960.tif.jpg" class="img-fluid rounded-5" loading="lazy">
-                    </div>
-                    <div class="col-md-4">
-                        <img src="img/lossy-page1-640px-Caetano_Veloso_no_III_Festival_da_Música_Popular.tif.jpg"
-                            class="img-fluid rounded-5" loading="lazy">
-                    </div>
-                </div>
-             </div>
+        <section class="video">
+            <h2>Abertura da Novela</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/25wL3yVhZLw" title="Carinha de Anjo - Abertura Oficial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </section>
 
-        <section id="contato">
-            <div class="container p-5 d-flex justify-content-center">
-                <div class="col-md-8 col-lg-10 rounded-5 formulario"> <!-- Caixa do formulário com 60% de largura -->
-                    <h2 class="mb-3">Entre em contato</h2>
-                    <form>
-                        <div class="form-group mb-3">
-                            <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="nome" class="form-control rounded-3 mt-1"
-                                placeholder="Digite seu nome completo">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="form-control rounded-3 mt-1"
-                                placeholder="Digite seu email">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="mensagem">Mensagem</label>
-                            <textarea id="mensagem" name="mensagem" class="form-control rounded-4 mt-2" rows="4"
-                                placeholder="Escreva sua mensagem"></textarea>
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg rounded-pill">Enviar
-                                mensagem</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <section class="contato">
+            <h2>Entre em Contato</h2>
+            <form id="form-contato">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+
+                <button type="submit" class="form-button">Enviar Mensagem</button>
+            </form>
         </section>
     </main>
-    <footer class="text-center p-3 fst-italic">
-        <p>Acesse nossas redes:</p>
-        <i class="bi bi-whatsapp"></i>
-        <i class="bi bi-instagram"></i>
-        <i class="bi bi-tiktok"></i>
-        <p class="mt-3">Desenvolvido por Start by Alura. Projeto fictício sem fins comerciais.</p>
-    </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.js"></script>
-    <script src="script.js"></script>
-  
-</body>
 
+    <footer>
+        <p>&copy; 2025 Site de Carinha de Anjo. Todos os direitos ao G .</p>
+    </footer>
+
+    <script>
+        // JavaScript para as funcionalidades de acessibilidade e formulário
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const btnTema = document.getElementById('btn-tema');
+            const btnAumentar = document.getElementById('btn-aumentar');
+            const btnDiminuir = document.getElementById('btn-diminuir');
+            const formContato = document.getElementById('form-contato');
+
+            // Funcionalidade de mudar o tema
+            btnTema.addEventListener('click', function() {
+                body.classList.toggle('dark-theme');
+            });
+
+            // Funcionalidade de aumentar e diminuir o tamanho da letra
+            let tamanhoAtual = 1.1; // Tamanho padrão
+
+            btnAumentar.addEventListener('click', function() {
+                tamanhoAtual += 0.1;
+                if (tamanhoAtual > 1.8) {
+                    tamanhoAtual = 1.8;
+                }
+                body.style.fontSize = tamanhoAtual + 'rem';
+            });
+
+            btnDiminuir.addEventListener('click', function() {
+                tamanhoAtual -= 0.1;
+                if (tamanhoAtual < 0.9) {
+                    tamanhoAtual = 0.9;
+                }
+                body.style.fontSize = tamanhoAtual + 'rem';
+            });
+
+            // Funcionalidade do formulário de contato
+            formContato.addEventListener('submit', function(event) {
+                event.preventDefault(); // Evita que a página recarregue
+
+                const nome = document.getElementById('nome').value;
+                const email = document.getElementById('email').value;
+                const mensagem = document.getElementById('mensagem').value;
+
+                alert(`Obrigado, ${nome}! Sua mensagem foi enviada com sucesso!`);
+
+                formContato.reset();
+            });
+        });
+    </script>
+</body>
 </html>
